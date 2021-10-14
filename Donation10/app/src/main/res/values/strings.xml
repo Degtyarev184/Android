@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Donation.1.0</string>
+    <string name="donateTitle">Welcome Homer</string>
+    <string name="donateSubtitle">Please Give Generosity</string>
+</resources>

@@ -20,10 +20,16 @@ import ie.app.databinding.ActivityMainBinding;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.NumberPicker;
+import android.widget.ProgressBar;
+import android.widget.RadioGroup;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button donateButton;
+    private RadioGroup paymentMethod;
+    private ProgressBar progressBar;
+    private NumberPicker amountPicker;
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
@@ -53,6 +59,11 @@ public class MainActivity extends AppCompatActivity {
         {
             Log.v("Donate", "Really got the donate button");
         }
+        paymentMethod = (RadioGroup) findViewById(R.id.paymentMethod);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        amountPicker = (NumberPicker) findViewById(R.id.amountPicker);
+        amountPicker.setMinValue(0);
+        amountPicker.setMaxValue(1000);
     }
 
     @Override
@@ -79,7 +90,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void donateButtonPressed (View view)
     {
-        Log.v("Donate", "Donate Pressed!");
+        int amount = amountPicker.getValue();
+        int radioId = paymentMethod.getCheckedRadioButtonId();
+        String method = radioId == R.id.PayPal ? "PayPal" : "Direct";
+        Log.v("Donate", "Donate Pressed! with amount " + amount + ", method: " +
+                method);
     }
 
     @Override
